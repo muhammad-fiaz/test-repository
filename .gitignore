@@ -1,0 +1,10 @@
+# Git ignore for Zig build artifacts
+
+# Zig compilation cache
+.zig-cache/
+
+# Zig build output (binaries, intermediate output)
+zig-out/
+# Explicitly ignore the output binaries directory
+zig-out/bin/
+
