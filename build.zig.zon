@@ -33,8 +33,8 @@
     // internet connectivity.
     .dependencies = .{
         .logly = .{
-            .url = "https://github.com/muhammad-fiaz/logly.zig/archive/refs/tags/0.1.1.tar.gz",
-            .hash = "logly-0.1.1-kZjLe2KDCgBNLyamzCJxGAtlpQ2A27Knem0Izfo8bnmA",
+            .url = "https://github.com/muhammad-fiaz/logly.zig/archive/refs/tags/0.1.5.tar.gz",
+            .hash = "logly-0.1.5-kZjLe6PzEABxdqcu5UTmYOmkr7gwWcCYbazJn8pLIECs",
         },
     },
     .paths = .{
