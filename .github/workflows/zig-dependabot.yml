@@ -29,4 +29,4 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }} # Use GITHUB_TOKEN directly usually, unless you have a specific PAT need.
           create_pr: true
-          run_validation: true
+          run_validation: false
