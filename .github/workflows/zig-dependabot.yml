@@ -27,6 +27,9 @@ jobs:
       - name: Run Zig Dependabot
         uses: muhammad-fiaz/zig-dependabot@v1.0.0
         with:
-          token: ${{ secrets.GH_TOKEN }} # Use GITHUB_TOKEN directly usually, unless you have a specific PAT need.
+          token: ${{ secrets.GH_TOKEN }}
           create_pr: true
-          run_validation: false
+          create_issue: true
+          run_validation: true
+          build_command: 'zig build'
+          test_command: 'zig build test'
