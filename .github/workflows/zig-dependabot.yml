@@ -3,8 +3,7 @@ name: Zig Dependabot
 on:
   schedule:
     # Runs everyday at midnight.
-    # Note: Using '*/5' (every 5 mins) is good for testing, but for production daily '0 0 * * *' is better.
-    - cron: '0 0 * * *' 
+    - cron: '0 0 * * *'
   workflow_dispatch: # Allows manual trigger
 
 permissions:
@@ -17,19 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup Zig
-        uses: mlugg/setup-zig@v2
+        uses: mlugg/setup-zig@v1
         with:
           version: master
 
       - name: Run Zig Dependabot
         uses: muhammad-fiaz/zig-dependabot@v1.0.0
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           create_pr: true
           create_issue: true
-          run_validation: true
-          build_command: 'zig build'
-          test_command: 'zig build test'
