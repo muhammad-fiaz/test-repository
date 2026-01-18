@@ -2,15 +2,15 @@ name: Zig Dependabot
 
 on:
   schedule:
-    # GitHub Action's minimum effective interval is ~5 minutes.
-    # We set it to */5 here as that's the fastest it will reliably trigger automatically.
-    - cron: '*/5 * * * *'
-  workflow_dispatch: # Use this to trigger it INSTANTLY
+    # Runs everyday at midnight.
+    # Note: Using '*/5' (every 5 mins) is good for testing, but for production daily '0 0 * * *' is better.
+    - cron: '0 0 * * *' 
+  workflow_dispatch: # Allows manual trigger
 
 permissions:
-  contents: write
-  pull-requests: write
-  issues: write
+  contents: write      # Required to push update branches
+  pull-requests: write # Required to create release PRs
+  issues: write        # Required if create_issue is true
 
 jobs:
   update-deps:
@@ -27,6 +27,6 @@ jobs:
       - name: Run Zig Dependabot
         uses: muhammad-fiaz/zig-dependabot@v1.0.0
         with:
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }} # Use GITHUB_TOKEN directly usually, unless you have a specific PAT need.
           create_pr: true
           run_validation: true
