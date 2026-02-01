@@ -27,8 +27,8 @@ jobs:
           cd action-repo
           bun run src/action.ts
         env:
-          INPUT_USERNAME: ${{ secrets.USER_NAME }}
-          INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_USERNAME: muhammad-fiaz  # Replace with your actual username
+          INPUT_GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           INPUT_THEME: default
           INPUT_OUTPUT_PATH: ../github-streak-stats.svg
 
