@@ -2,8 +2,6 @@ name: Test Streak Stats
 
 on:
   workflow_dispatch: # Manual trigger for testing
-  schedule:
-    - cron: "0 0 * * *" # Daily at midnight
 
 jobs:
   test:
@@ -13,13 +11,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate Streak Stats
-        uses: muhammad-fiaz/github-readme-streak-stats@main
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          USERNAME: ${{ secrets.USER_NAME }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          THEME: default
-          OUTPUT_PATH: github-streak-stats.svg
+          bun-version: latest
+
+      - name: Clone Action Repository
+        run: |
+          git clone https://github.com/muhammad-fiaz/github-readme-streak-stats.git action-repo
+          cd action-repo
+          bun install
+
+      - name: Generate Streak Stats
+        run: |
+          cd action-repo
+          bun run src/action.ts
+        env:
+          INPUT_USERNAME: ${{ secrets.USER_NAME }}
+          INPUT_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_THEME: default
+          INPUT_OUTPUT_PATH: ../github-streak-stats.svg
 
       - name: Commit and Push (if changes)
         run: |
